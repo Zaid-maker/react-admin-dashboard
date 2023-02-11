@@ -1,10 +1,15 @@
+console.clear();
+
 import express from "express";
-import * as dotenv from 'dotenv'
+import * as dotenv from "dotenv";
+import cors from "cors";
+
+dotenv.config();
 
 const PORT = process.env.PORT;
 const app = express();
 
-dotenv.config();
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.status(200).json({

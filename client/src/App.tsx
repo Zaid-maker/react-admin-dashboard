@@ -1,23 +1,39 @@
-import React from "react";
-
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import { AuthProvider, Refine } from "@pankod/refine-core";
 import {
-  notificationProvider,
-  RefineSnackbarProvider,
   CssBaseline,
-  GlobalStyles,
-  ReadyPage,
   ErrorComponent,
+  GlobalStyles,
+  notificationProvider,
+  ReadyPage,
+  RefineSnackbarProvider,
 } from "@pankod/refine-mui";
 
-import dataProvider from "@pankod/refine-simple-rest";
+import {
+  AccountCircleOutlined,
+  ChatBubbleOutline,
+  PeopleAltOutlined,
+  StarOutlineRounded,
+  VillaOutlined,
+} from "@mui/icons-material";
+
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 import routerProvider from "@pankod/refine-react-router-v6";
+import dataProvider from "@pankod/refine-simple-rest";
 import axios, { AxiosRequestConfig } from "axios";
+import { Header, Layout, Sider, Title } from "components/layout";
 import { ColorModeContextProvider } from "contexts";
-import { Title, Sider, Layout, Header } from "components/layout";
-import { Login } from "pages/login";
 import { CredentialResponse } from "interfaces/google";
+import {
+  Login,
+  Home,
+  Agents,
+  MyProfile,
+  PropertyDetails,
+  AllProperties,
+  CreateProperty,
+  AgentProfile,
+  EditProperty,
+} from "pages";
 import { parseJwt } from "utils/parse-jwt";
 
 const axiosInstance = axios.create();
@@ -98,12 +114,32 @@ function App() {
           catchAll={<ErrorComponent />}
           resources={[
             {
-              name: "posts",
+              name: "property",
               list: MuiInferencer,
-              edit: MuiInferencer,
-              show: MuiInferencer,
-              create: MuiInferencer,
-              canDelete: true,
+              icon: <VillaOutlined />,
+            },
+            {
+              name: "agent",
+              list: MuiInferencer,
+              icon: <PeopleAltOutlined />,
+            },
+            {
+              name: "review",
+              list: MuiInferencer,
+              icon: <StarOutlineRounded />,
+            },
+            {
+              name: "message",
+              list: MuiInferencer,
+              icon: <ChatBubbleOutline />,
+            },
+            {
+              name: "my-profile",
+              options: {
+                label: "My Profile",
+              },
+              list: MuiInferencer,
+              icon: <AccountCircleOutlined />,
             },
           ]}
           Title={Title}

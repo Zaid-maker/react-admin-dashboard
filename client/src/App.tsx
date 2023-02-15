@@ -149,6 +149,7 @@ function App() {
           routerProvider={routerProvider}
           authProvider={authProvider}
           LoginPage={Login}
+          DashboardPage={Home}
         />
       </RefineSnackbarProvider>
     </ColorModeContextProvider>

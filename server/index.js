@@ -17,4 +17,18 @@ app.get("/", (req, res) => {
   });
 });
 
-app.listen(PORT, () => console.log(`Server started successfully on ${PORT}`));
+/**
+ * It's a function that starts the server and logs a message to the console if the server starts
+ * successfully.
+ */
+const startServer = () => {
+  try {
+    app.listen(PORT, () => {
+      console.log(`Server started successfully on ${PORT}`);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+startServer();
